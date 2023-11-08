@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "78c917e2-1d74-401b-a4ad-33e2c0132653",
+		"name": "Bazar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30782541"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "localhost:8080/productos/crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "/*{\r\n    \"codigo_producto\":1,\r\n    \"nombre\": \"Gafas\",\r\n    \"marca\" : \"Rayvan\",\r\n    \"costo\" : 70000,\r\n    \"cantidad_disponible\" : 100\r\n\r\n}*/{    \"codigo_producto\":1,\r\n    \"nombre\": \"Alfombra\",\r\n    \"marca\" : \"Tere\",\r\n    \"costo\" : 20000,\r\n    \"cantidad_disponible\" : 4\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/productos/crear"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/productos"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/productos/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/productos/1"
+					},
+					"response": []
+				},
+				{
+					"name": ": localhost:8080/productos/eliminar/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": ": localhost:8080/productos/eliminar/1"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/productos/editar/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_curso\":1,\r\n    \"nombre\": \"Gorra\",\r\n    \"marca\" : \"Pirulo\",\r\n    \"costo\" : 8000,\r\n    \"cantidad_disponible\" : 50\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/productos/editar/1"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/productos/falta_stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/productos/falta_stock"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "localhost:8080/clientes/crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_cliente\":1,\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\" : \"Perez\",\r\n    \"dni\" : \"12345678\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/clientes/crear"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/clientes/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/clientes/1"
+					},
+					"response": []
+				},
+				{
+					"name": ": localhost:8080/clientes/eliminar/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": ": localhost:8080/clientes/eliminar/1"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/clientes/editar/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id_cliente\":2,\r\n    \"nombre\": \"Pedro\",\r\n    \"apellido\" : \"Gonzalez\",\r\n    \"dni\" : \"87965432\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/clientes/editar/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ventas",
+			"item": [
+				{
+					"name": "localhost:8080/ventas/crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigo_venta\":1,\r\n    \"fecha\": \"2023-02-09\",\r\n    \"total\" : 100000,\r\n    \"listaProductos\" :[{\r\n     \"codigo_producto\":1/*,\r\n        \"nombre\": \"Gorra\",\r\n        \"marca\": \"Pirulo\",\r\n        \"costo\": 4000.0,\r\n        \"cantidad_disponible\": 200.0*/\r\n    }],\r\n    \"unCliente\" : {\r\n        \"id_cliente\": 1/*\r\n        \"nombre\": \"Pedro\",\r\n        \"apellido\": \"Gonzalez\",\r\n        \"dni\": \"87965432\"*/}\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/ventas/crear"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/ventas"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/ventas/2"
+					},
+					"response": []
+				},
+				{
+					"name": ": localhost:8080/ventas/eliminar/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": ": localhost:8080/ventas/eliminar/9"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas/editar/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n        \"codigo_venta\": 25,\r\n        \"fecha\": \"2018-02-07\",\r\n        \"total\": 100.0,\r\n        \"listaProductos\": [\r\n            {\r\n                \"codigo_producto\": 52,\r\n                \"nombre\": \"Gafas\",\r\n                \"marca\": \"Rayvan\",\r\n                \"costo\": 70000.0,\r\n                \"cantidad_disponible\": 100.0\r\n            }\r\n        ],\r\n        \"unCliente\": {\r\n            \"id_cliente\": 1,\r\n            \"nombre\": \"Julian\",\r\n            \"apellido\": \"Perez\",\r\n            \"dni\": \"123456781\"\r\n        }\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/ventas/editar/9"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas/productos/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/ventas/productos/1"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas/total/{fecha_venta}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/ventas/{fecha_venta}"
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/ventas/mayor_venta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/ventas/mayor_venta"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

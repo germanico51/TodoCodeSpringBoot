@@ -1,140 +1,127 @@
-# Todo Code SpringBoot
-Ejercicio final integrador de un CRUD hecho con SPRINGBOOT
+# 🧾 Todo Code Spring Boot – API para Bazar
 
-TP Integrador Final
-Objetivo
-El objetivo de este proyecto integrador final es el de validar los conocimientos prácticos y 
-técnicos referidos al desarrollo de APIs en el lenguaje de programación Java mediante Spring 
-Boot para el curso “Desarrollo de APIs en Java con Spring Boot” de la TodoCode Academy.
-Escenario
-Un bazar ha incrementado en gran medida sus ventas. Dado esto y que le está siendo casi 
-imposible registrar las mismas y manejar el stock de sus productos de forma manual, necesita 
-del desarrollo de una aplicación que le permita realizar esta tarea.
-La dueña del bazar manifiesta que todas las operaciones que tenga la aplicación se deben 
-poder realizar mediante dos tipos de clientes http distintos:
+Este proyecto es el **trabajo integrador final** del curso _"Desarrollo de APIs en Java con Spring Boot"_ de TodoCode Academy. Consiste en una API REST para la gestión de productos, clientes y ventas de un bazar.
 
-- Una aplicación web, cuyo frontend desarrollará un programador amigo (no será parte 
-de nuestra tarea como desarrolladores backend).
+## 🎯 Objetivo
 
--Una aplicación Mobile que será implementada a futuro.
-Cada una de estas app representa a los dispositivos que ella y sus empleados manejan 
-actualmente. En síntesis: una computadora y varios celulares.
-Dada esta situación particular y de que necesita utilizar el mismo backend para ambas 
-opciones, solicita el desarrollo de una API.
-Modelado
-A partir del relevamiento que ha llevado a cabo un analista funcional, se detectaron que serán 
-necesarias las siguientes clases:
-- Producto
-- Venta
-- Cliente
-  
-En donde cada venta posee una lista de productos y uno y solo un cliente asociado. Además 
-de eso, cada clase debe tener los siguientes atributos:
+Permitir a la dueña de un bazar registrar operaciones y manejar el stock de productos a través de un backend común para dos futuros clientes: una app web y una app mobile.
 
+## 🛠️ Tecnologías
+
+- Java 11+  
+- Spring Boot  
+- Spring Data JPA  
+- MySQL  
+- Postman (para pruebas manuales)
+
+## ⚙️ Configuración
+
+Base de datos configurada en `application.properties`:
+
+```properties
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/bazar?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+📦 Modelo de Dominio
 Producto
+codigo_producto: Long
 
-- Long codigo_producto
-- String nombre
-- String marca
-- Double costo
-- Double cantidad_disponible
+nombre: String
 
-Venta
+marca: String
 
-- Long codigo_venta
-- LocalDate fecha
-- Double total
-- List<Producto> listaProductos
-- Cliente unCliente
+costo: Double
+
+cantidad_disponible: Double
 
 Cliente
+id_cliente: Long
 
-- Long id_cliente
-- String nombre
-- String apellido
-- String dni
-  
-Requerimientos
+nombre: String
 
-A partir del relevamiento realizado respecto al modelado, la dueña del bazar especificó que 
-tiene los siguientes requerimientos:
- Poder realizar un CRUD completo de productos
-a. Métodos HTTP: GET, POST, DELETE, PUT
+apellido: String
 
-b. Endpoints:
+dni: String
 
-Creación: localhost:8080/productos/crear 
+Venta
+codigo_venta: Long
 
-Lista completa de productos: localhost:8080/productos 
+fecha: LocalDate
 
-Traer un producto en particular: localhost:8080/productos/{codigo_producto} 
+total: Double
 
-Eliminación: localhost:8080/productos/eliminar/{codigo_producto} 
+listaProductos: List<Producto>
 
-Edición: localhost:8080/productos/editar/{codigo_producto} 
+unCliente: Cliente
 
-Poder realizar un CRUD completo de clientes
-a. Métodos HTTP: GET, POST, DELETE, PUT
+🔁 Endpoints
+Productos
+POST /productos/crear
 
-b. Endpoints:
+GET /productos
 
-Creación: localhost:8080/clientes/crear
+GET /productos/{codigo_producto}
 
-Lista completa de clientes: localhost:8080/clientes
+PUT /productos/editar/{codigo_producto}
 
-Traer un cliente en particular: localhost:8080/clientes/{id_cliente}
+DELETE /productos/eliminar/{codigo_producto}
 
-Eliminación: localhost:8080/clientes/eliminar/{id_cliente}
+GET /productos/falta_stock – Productos con stock menor a 5
 
-Edición: localhost:8080/clientes/editar/{id_cliente}
+Clientes
+POST /clientes/crear
 
-Poder realizar un CRUD completo de ventas
-a. Métodos HTTP: GET, POST, DELETE, PUT
+GET /clientes
 
-b. Endpoints:
+GET /clientes/{id_cliente}
 
-Creación: localhost:8080/ventas/crear
+PUT /clientes/editar/{id_cliente}
 
-Lista completa de ventas realizadas: localhost:8080/ventas
+DELETE /clientes/eliminar/{id_cliente}
 
-Traer una venta en particular: localhost:8080/ventas/{codigo_venta}
+Ventas
+POST /ventas/crear
 
-Eliminación: localhost:8080/ventas/eliminar/{codigo_venta}
+GET /ventas
 
-Edición: localhost:8080/ventas/editar/{codigo_venta}
+GET /ventas/{codigo_venta}
 
-Nota: No es necesario para este requerimiento actualizar el stock de un producto (descontar)
-al realizar una venta, ni tampoco controlar si cuenta con la cantidad disponible para vender;
-sin embargo, se considerará como “plus” o extra si se desea 
-implementar la funcionalidad.
+PUT /ventas/editar/{codigo_venta}
 
-- Obtener todos los productos cuya cantidad_disponible sea menor a 5
+DELETE /ventas/eliminar/{codigo_venta}
 
-  a. Métodos HTTP: GET
-  
-  b. Endpoint: localhost:8080/productos/falta_stock
+GET /ventas/productos/{codigo_venta} – Lista de productos de una venta
 
-- Obtener la lista de productos de una determinada venta
-   
-  a. Métodos HTTP: GET
-  
-  b. Endpoint: localhost:8080/ventas/productos/{codigo_venta}
+GET /ventas/total/{fecha_venta} – Total y cantidad de ventas de un día
 
-- Obtener la sumatoria del monto y también cantidad total de ventas de un determinado día
-  a. Métodos HTTP: GET
-  
-  b. Endpoint: localhost:8080/ventas/total/{fecha_venta}
+GET /ventas/mayor_venta – Venta con monto más alto
 
-- Obtener el codigo_venta, el total, la cantidad de productos, el nombre del cliente y el 
-apellido del cliente de la venta con el monto más alto de todas. 
+💡 Bonus opcional: actualización automática de stock al vender.
 
-  a. Métodos HTTP: GET
-  
-  b. Endpoint: localhost:8080/ventas/mayor_venta
+🧪 Pruebas
+Podés importar la colección de Postman incluida en el proyecto (TodoCode.postman_collection.json) para probar los endpoints.
 
-Tener en cuenta patrón DTO para este escenario
+📂 Instalación
+Clonar el repositorio:
 
-Al mismo tiempo, incluir la colección de Postman utilizada para realizar las pruebas (esto 
-puede incluirse en un link de descarga dentro del README de Github o en un archivo adjunto 
-dentro del proyecto, como se prefiera).
+bash
+Copiar
+Editar
+git clone https://github.com/germanico51/TodoCodeSpringBoot.git
+cd TodoCodeSpringBoot
+Crear la base de datos en MySQL:
 
+sql
+Copiar
+Editar
+CREATE DATABASE bazar;
+Ejecutar el proyecto:
+
+bash
+Copiar
+Editar
+mvn spring-boot:run
+Acceder a la API en:
+http://localhost:8080
